@@ -37,6 +37,9 @@ void Atopdown_heroPlayerController::SetupInputComponent()
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &Atopdown_heroPlayerController::MoveToTouchLocation);
 
 	InputComponent->BindAction("ResetVR", IE_Pressed, this, &Atopdown_heroPlayerController::OnResetVR);
+
+	InputComponent->BindAxis("MoveForward", this, &Atopdown_heroPlayerController::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &Atopdown_heroPlayerController::MoveRight);
 }
 
 void Atopdown_heroPlayerController::OnResetVR()
@@ -109,4 +112,20 @@ void Atopdown_heroPlayerController::OnSetDestinationReleased()
 {
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
+}
+
+void Atopdown_heroPlayerController::MoveForward(float AxisValue)
+{
+	if (Atopdown_heroCharacter* MyPawn = Cast<Atopdown_heroCharacter>(GetPawn()))
+	{
+		MyPawn->MoveForward(AxisValue);
+	}
+}
+
+void Atopdown_heroPlayerController::MoveRight(float AxisValue)
+{
+	if (Atopdown_heroCharacter* MyPawn = Cast<Atopdown_heroCharacter>(GetPawn()))
+	{
+		MyPawn->MoveRight(AxisValue);
+	}
 }

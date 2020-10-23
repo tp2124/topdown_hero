@@ -16,7 +16,7 @@ public:
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
-	uint32	bMoveToMouseCursor : 1;
+	uint32 bMoveToMouseCursor : 1;
 
 	// Begin PlayerController interface
 	virtual void PlayerTick(float DeltaTime) override;
@@ -25,14 +25,6 @@ protected:
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
-
-	/** Called for forwards/backward input */
-	void MoveForward(float Value);
-
-	/** Called for side to side input */
-	void MoveRight(float Value);
-
-	void MoveWithKeyboardInput();
 
 	/** Navigate player to the current mouse cursor location. */
 	void MoveToMouseCursor();

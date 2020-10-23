@@ -18,16 +18,21 @@ void Atopdown_heroPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 
 	// keep updating the destination every tick while desired
-	if (bMoveToMouseCursor)
+	/*if (bMoveToMouseCursor)
 	{
 		MoveToMouseCursor();
-	}
+	}*/
+
+	MoveWithKeyboardInput();
 }
 
 void Atopdown_heroPlayerController::SetupInputComponent()
 {
 	// set up gameplay key bindings
 	Super::SetupInputComponent();
+
+	InputComponent->BindAxis("MoveForward", this, &Atopdown_heroPlayerController::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &Atopdown_heroPlayerController::MoveRight);
 
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &Atopdown_heroPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &Atopdown_heroPlayerController::OnSetDestinationReleased);
@@ -42,6 +47,35 @@ void Atopdown_heroPlayerController::SetupInputComponent()
 void Atopdown_heroPlayerController::OnResetVR()
 {
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
+}
+
+void Atopdown_heroPlayerController::MoveForward(float Value)
+{
+	if ((Controller != NULL) && (Value != 0.0f))
+	{
+		// find out which way is forward
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
+	}
+}
+
+void Atopdown_heroPlayerController::MoveRight(float Value)
+{
+	if ((Controller != NULL) && (Value != 0.0f))
+	{
+		// find out which way is right
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get right vector 
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// add movement in that direction
+		AddMovementInput(Direction, Value);
+	}
 }
 
 void Atopdown_heroPlayerController::MoveToMouseCursor()

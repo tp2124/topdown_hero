@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "topdown_hero",
+			"Path": "D:\\SideProjects\\Code\\GitHub\\topdown_hero\\Source\\topdown_hero.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "topdown_heroEditor",
+			"Path": "D:\\SideProjects\\Code\\GitHub\\topdown_hero\\Source\\topdown_heroEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

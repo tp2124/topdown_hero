@@ -1,0 +1,15 @@
+D:\SideProjects\Code\GitHub\topdown_hero\Intermediate\Build\Win64\UE4Editor\Development\topdown_hero\Definitions.topdown_hero.h
+D:\SideProjects\Code\GitHub\topdown_hero\Source\topdown_hero\topdown_heroGameMode.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+D:\SideProjects\Code\GitHub\topdown_hero\Intermediate\Build\Win64\UE4Editor\Inc\topdown_hero\topdown_heroGameMode.generated.h
+D:\SideProjects\Code\GitHub\topdown_hero\Source\topdown_hero\topdown_heroPlayerController.h
+D:\SideProjects\Code\GitHub\topdown_hero\Intermediate\Build\Win64\UE4Editor\Inc\topdown_hero\topdown_heroPlayerController.generated.h
+D:\SideProjects\Code\GitHub\topdown_hero\Source\topdown_hero\topdown_heroCharacter.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+D:\Program Files (x86)\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+D:\SideProjects\Code\GitHub\topdown_hero\Intermediate\Build\Win64\UE4Editor\Inc\topdown_hero\topdown_heroCharacter.generated.h

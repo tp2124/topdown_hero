@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\topdown_hero.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{7FF43B21-4216-44E4-94A1-894CD789C0A9}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\topdown_hero.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\topdown_heroEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FAC90737-9456-4A4A-8C15-7290004CD3F3}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\topdown_hero">
+      <UniqueIdentifier>{2FB25A72-B1C3-441A-9C74-D8F34BC222CD}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\topdown_hero\topdown_hero.Build.cs">
+      <Filter>Source\topdown_hero</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\topdown_hero\topdown_hero.cpp">
+      <Filter>Source\topdown_hero</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\topdown_hero\topdown_hero.h">
+      <Filter>Source\topdown_hero</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\topdown_hero\topdown_heroCharacter.cpp">
+      <Filter>Source\topdown_hero</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\topdown_hero\topdown_heroCharacter.h">
+      <Filter>Source\topdown_hero</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\topdown_hero\topdown_heroGameMode.cpp">
+      <Filter>Source\topdown_hero</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\topdown_hero\topdown_heroGameMode.h">
+      <Filter>Source\topdown_hero</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\topdown_hero\topdown_heroPlayerController.cpp">
+      <Filter>Source\topdown_hero</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\topdown_hero\topdown_heroPlayerController.h">
+      <Filter>Source\topdown_hero</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

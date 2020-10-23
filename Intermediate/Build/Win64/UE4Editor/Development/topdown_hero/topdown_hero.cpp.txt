@@ -1,0 +1,2 @@
+D:\SideProjects\Code\GitHub\topdown_hero\Intermediate\Build\Win64\UE4Editor\Development\topdown_hero\Definitions.topdown_hero.h
+D:\SideProjects\Code\GitHub\topdown_hero\Source\topdown_hero\topdown_hero.h

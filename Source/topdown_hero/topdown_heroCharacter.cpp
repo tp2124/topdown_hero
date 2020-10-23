@@ -87,4 +87,39 @@ void Atopdown_heroCharacter::Tick(float DeltaSeconds)
 			CursorToWorld->SetWorldRotation(CursorR);
 		}
 	}
+
+	// Move WASD
+	{
+		//Scale our movement input axis values by 100 units per second
+		MovementInput = MovementInput * GetCharacterMovement()->MaxWalkSpeed;
+		FVector NewLocation = GetActorLocation();
+		NewLocation += FVector(1.0f, 0.0f, 0.0f) * MovementInput.X * DeltaSeconds;
+		NewLocation += FVector(0.0f, 1.0f, 0.0f) * MovementInput.Y * DeltaSeconds;
+		SetActorLocation(NewLocation);
+	}
+}
+
+void Atopdown_heroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	//Hook up events for "ZoomIn"
+	//InputComponent->BindAction("ZoomIn", IE_Pressed, this, &APawnWithCamera::ZoomIn);
+	//InputComponent->BindAction("ZoomIn", IE_Released, this, &APawnWithCamera::ZoomOut);
+
+	//Hook up every-frame handling for our four axes
+	PlayerInputComponent->BindAxis("MoveForward", this, &Atopdown_heroCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &Atopdown_heroCharacter::MoveRight);
+	//InputComponent->BindAxis("CameraPitch", this, &APawnWithCamera::PitchCamera);
+	//InputComponent->BindAxis("CameraYaw", this, &APawnWithCamera::YawCamera);
+}
+
+void Atopdown_heroCharacter::MoveForward(float AxisValue)
+{
+	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
+}
+
+void Atopdown_heroCharacter::MoveRight(float AxisValue)
+{
+	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }

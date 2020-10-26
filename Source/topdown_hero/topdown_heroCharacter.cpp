@@ -2,6 +2,7 @@
 
 #include "topdown_heroCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DecalComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -89,22 +90,21 @@ void Atopdown_heroCharacter::Tick(float DeltaSeconds)
 	}
 
 	// Move WASD
-	{
-		//Scale our movement input axis values by 100 units per second
-		MovementInput = MovementInput * GetCharacterMovement()->MaxWalkSpeed;
-		FVector NewLocation = GetActorLocation();
-		NewLocation += FVector(1.0f, 0.0f, 0.0f) * MovementInput.X * DeltaSeconds;
-		NewLocation += FVector(0.0f, 1.0f, 0.0f) * MovementInput.Y * DeltaSeconds;
-		SetActorLocation(NewLocation);
+	if (!KeyboardMovementInput.IsNearlyZero()) {
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, GetActorLocation().ToString());
+		}
+		AddMovementInput(KeyboardMovementInput);
+		KeyboardMovementInput = FVector::ZeroVector;
 	}
 }
 
 void Atopdown_heroCharacter::MoveForward(float AxisValue)
 {
-	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
+	KeyboardMovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }
 
 void Atopdown_heroCharacter::MoveRight(float AxisValue)
 {
-	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
+	KeyboardMovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }

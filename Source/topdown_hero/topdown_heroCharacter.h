@@ -38,7 +38,7 @@ private:
 	class UDecalComponent* CursorToWorld;
 
 	//Input variables
-	FVector2D MovementInput;
+	FVector KeyboardMovementInput;
 public:
 	void MoveForward(float axisValue);
 	void MoveRight(float axisValue);

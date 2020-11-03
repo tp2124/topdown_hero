@@ -32,6 +32,8 @@ void Atopdown_heroPlayerController::SetupInputComponent()
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &Atopdown_heroPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &Atopdown_heroPlayerController::OnSetDestinationReleased);
 
+	InputComponent->BindAction("Interact", IE_Pressed, this, &Atopdown_heroPlayerController::Interact);
+
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &Atopdown_heroPlayerController::MoveToTouchLocation);
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &Atopdown_heroPlayerController::MoveToTouchLocation);
@@ -127,5 +129,13 @@ void Atopdown_heroPlayerController::MoveRight(float AxisValue)
 	if (Atopdown_heroCharacter* MyPawn = Cast<Atopdown_heroCharacter>(GetPawn()))
 	{
 		MyPawn->MoveRight(AxisValue);
+	}
+}
+
+void Atopdown_heroPlayerController::Interact()
+{
+	if (Atopdown_heroCharacter* MyPawn = Cast<Atopdown_heroCharacter>(GetPawn()))
+	{
+		MyPawn->PickUpObjects();
 	}
 }

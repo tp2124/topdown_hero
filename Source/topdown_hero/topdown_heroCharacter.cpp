@@ -13,8 +13,12 @@
 #include "Materials/Material.h"
 #include "Engine/World.h"
 
+#include "topdown_hero/InteractableObject.h"
+
 Atopdown_heroCharacter::Atopdown_heroCharacter()
 {
+	PickUpCount = 0;
+
 	// Set size for player capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -108,3 +112,17 @@ void Atopdown_heroCharacter::MoveRight(float AxisValue)
 {
 	KeyboardMovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }
+
+void Atopdown_heroCharacter::PickUpObjects()
+{
+	// Find AInteractableObject's that are within a radius, remove those actors, and increment counter.
+	TArray<AActor*> ObjectsInRadius;
+	GetOverlappingActors(ObjectsInRadius, TSubclassOf<AInteractableObject>());
+	//PickUpCount += ObjectsInRadius.Num();
+	for (auto object : ObjectsInRadius) {
+		PickUpCount++;
+		object->Destroy();
+	}
+}
+
+

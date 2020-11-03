@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class UParticleSystem;
+class UParticleSystemComponent;
 class Atopdown_heroCharacter;
 
 UCLASS()
@@ -34,13 +35,15 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Effects")
 	UParticleSystem* PickupFX;
+	UParticleSystemComponent* ActiveVFX;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void PlayEffects() const;
+	void PlayEffects();
+	void StopEffects();
 	void UpdateMaterial(bool isInteractable);
-	bool IsPlayerInRange(const Atopdown_heroCharacter* character) const;
+	//bool IsPlayerInRange(const Atopdown_heroCharacter* character) const;
 
 public:	
 	// Called every frame

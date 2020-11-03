@@ -6,6 +6,7 @@
 #include "topdown_hero/topdown_heroCharacter.h"
 
 #include "Components/SphereComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -31,9 +32,16 @@ void AInteractableObject::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AInteractableObject::PlayEffects() const 
+void AInteractableObject::PlayEffects() 
 {
-	UGameplayStatics::SpawnEmitterAtLocation(this, PickupFX, GetActorLocation());
+	ActiveVFX = UGameplayStatics::SpawnEmitterAtLocation(this, PickupFX, GetActorLocation());
+}
+
+void AInteractableObject::StopEffects()
+{
+	if (ActiveVFX) {
+		ActiveVFX->Deactivate();
+	}
 }
 
 void AInteractableObject::UpdateMaterial(bool isInteractable)
@@ -60,6 +68,7 @@ void AInteractableObject::NotifyActorBeginOverlap(AActor* OtherActor)
 void AInteractableObject::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
+	StopEffects();
 
 	//Atopdown_heroCharacter* character = Cast<Atopdown_heroCharacter>(OtherActor);
 	UpdateMaterial(false);

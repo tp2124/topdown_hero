@@ -91,9 +91,9 @@ void Atopdown_heroCharacter::Tick(float DeltaSeconds)
 
 	// Move WASD
 	if (!KeyboardMovementInput.IsNearlyZero()) {
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, GetActorLocation().ToString());
-		}
+		//if (GEngine) {
+		//	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, GetActorLocation().ToString());
+		//}
 		AddMovementInput(KeyboardMovementInput);
 		KeyboardMovementInput = FVector::ZeroVector;
 	}

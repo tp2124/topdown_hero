@@ -12,6 +12,7 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "Net/UnrealNetwork.h"
 
 #include "topdown_hero/InteractableObject.h"
 
@@ -60,6 +61,8 @@ Atopdown_heroCharacter::Atopdown_heroCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+
+	bReplicates = true;
 }
 
 void Atopdown_heroCharacter::Tick(float DeltaSeconds)
@@ -98,6 +101,7 @@ void Atopdown_heroCharacter::Tick(float DeltaSeconds)
 		//if (GEngine) {
 		//	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, GetActorLocation().ToString());
 		//}
+		//UE_LOG(LogTemp, Warning, TEXT("Something"));
 		AddMovementInput(KeyboardMovementInput);
 		KeyboardMovementInput = FVector::ZeroVector;
 	}
@@ -115,6 +119,15 @@ void Atopdown_heroCharacter::MoveRight(float AxisValue)
 
 void Atopdown_heroCharacter::PickUpObjects()
 {
+	// Old school implementation
+	//if (Role < ROLE_Authority) {
+	//if (GetLocalRole() == ROLE_Authority) {
+	if (!HasAuthority()) {
+		// Ask the server to do the work.
+		ServerPickUpObjects();
+		return;
+	}
+
 	// Find AInteractableObject's that are within a radius, remove those actors, and increment counter.
 	TArray<AActor*> ObjectsInRadius;
 	GetOverlappingActors(ObjectsInRadius, TSubclassOf<AInteractableObject>());
@@ -123,6 +136,18 @@ void Atopdown_heroCharacter::PickUpObjects()
 		PickUpCount++;
 		object->Destroy();
 	}
+}
+
+void Atopdown_heroCharacter::ServerPickUpObjects_Implementation()
+{
+	PickUpObjects();
+}
+
+// Needed due to having any replicated properties
+void Atopdown_heroCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(Atopdown_heroCharacter, PickUpCount);
 }
 
 

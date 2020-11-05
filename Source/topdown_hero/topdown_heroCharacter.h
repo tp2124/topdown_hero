@@ -41,12 +41,24 @@ private:
 	FVector KeyboardMovementInput;
 
 	// Inventory
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Gameplay, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Replicated, BlueprintReadOnly, Category = Gameplay, meta = (AllowPrivateAccess = "true"))
 	int PickUpCount;
 
 public:
 	void MoveForward(float axisValue);
 	void MoveRight(float axisValue);
 	void PickUpObjects();
+
+	UFUNCTION(Server, Reliable)
+	void ServerPickUpObjects();
+
+	// Required for having any property that is Replicated
+	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
+	
+	// Required for having any property that is Replicated
+	virtual bool IsSupportedForNetworking() const override
+	{
+		return true;
+	}
 };
 
